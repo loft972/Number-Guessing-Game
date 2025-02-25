@@ -5,6 +5,8 @@ public class Game {
 
     static Scanner sc = new Scanner(System.in);
 
+    static long begin, end;
+
     public static void main(String[] args) {
         System.out.println("""
                 Welcome to the Number Guessing Game!
@@ -54,7 +56,7 @@ public class Game {
                 }
             }
 
-            System.out.println("Do you want to replay ?(y or n)");
+            System.out.println("Do you want play again ?(y or n)");
             endTheGame = sc.next().equals("y");
 
         }while (endTheGame);
@@ -65,7 +67,7 @@ public class Game {
     }
 
     private static void runGame(int chances, int randomNumber){
-
+        begin = System.currentTimeMillis();
         int guessNumber = 0, attemps = 1;
         boolean isPlayerWin = false;
         do {
@@ -84,9 +86,10 @@ public class Game {
             }
 
         } while(!isPlayerWin && chances > 0);
-
+        end = System.currentTimeMillis();
+        double duration = (end - begin) / 1000.0;
         if(isPlayerWin){
-            System.out.println("Congratulations! You guessed the correct number in "+ attemps +" attempts.");
+            System.out.println("Congratulations! You guessed the correct number in "+ attemps +" attempts and " + duration + " seconds .");
         } else {
             System.out.println("Game Over");
         }
