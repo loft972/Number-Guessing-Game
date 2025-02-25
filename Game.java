@@ -18,34 +18,46 @@ public class Game {
                 others number to stop the game
                 """);
 
+        boolean endTheGame = false;
 
-        System.out.print("Enter your choice : ");
-        int choice = sc.nextInt();
+        do {
+            System.out.print("Enter your difficulty level : ");
+            int choice = sc.nextInt();
 
-        switch (choice){
-            case 1 -> {
-                System.out.println("""
+            switch (choice){
+                case 1 -> {
+                    System.out.println("""
                 Great! You have selected the Easy difficulty level.
                 Let's start the game!
                 """);
-                runGame(10, randomNumber());
-            }
-            case 2 -> {
-                System.out.println("""
+                    runGame(10, randomNumber());
+                }
+                case 2 -> {
+                    System.out.println("""
                 Great! You have selected the Medium difficulty level.
                 Let's start the game!
                 """);
-                runGame(5, randomNumber());
-            }
-            case 3 -> {
-                System.out.println("""
+                    runGame(5, randomNumber());
+                }
+                case 3 -> {
+                    System.out.println("""
                 Great! You have selected the Hard difficulty level.
                 Let's start the game!
                 """);
-                runGame(3, randomNumber());
+                    runGame(3, randomNumber());
+                }
+                default -> {
+                    System.out.println("""
+                        Select a difficulty beetween 1 to 3
+                        """);
+                    endTheGame = true;
+                }
             }
-            default -> System.out.println("Arrêt du jeu");
-        }
+
+            System.out.println("Do you want to replay ?(y or n)");
+            endTheGame = sc.next().equals("y");
+
+        }while (endTheGame);
     }
 
     private static int randomNumber(){
